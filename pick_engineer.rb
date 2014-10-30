@@ -31,7 +31,7 @@ def featureB(engineer)
 	a = engineer.split(' ') 	
 	b = Array.new 			# create new array => []
 	# convert string into array, split on an empty string delimiter.
-	b = a[1].split(' ') 		
+	b = a[1].split("") 		
 	return a[0]+' '+b[0] +'...' 	# show output-------
 end
 
