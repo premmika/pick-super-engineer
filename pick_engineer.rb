@@ -1,11 +1,13 @@
-#function pick_engineer will random name of engineer from "engineers.txt"
-def pick_engineer()
+#function pick_engineer will find name of engineer from "engineers.txt"
+def pick_engineer(string)
 	#initial array engineer to store each text line => engineer's name 
-	engineer = Array.new()
 	engineer = File.readlines("engineers.txt") 
-	
-	#random engineer's name 
-	engineer[rand(engineer.length)] 
+	engineer.each do |i|
+		if i.index(string) != nil
+			return i
+		end
+	end
+	return ""
 end
 
 def featureA(engineer)
@@ -26,18 +28,23 @@ def featureA(engineer)
 	return a
 end
 
-def featureB(engineer) 
-	# convert string to an array of characters with the split method.
-	a = engineer.split(' ') 	
-	b = Array.new 			# create new array => []
-	# convert string into array, split on an empty string delimiter.
-	b = a[1].split("") 		
-	return a[0]+' '+b[0] +'...' 	# show output-------
+def featureB(engineer)  
+	# convert string to an array of characters with the split method. 
+	a = engineer.split(' ') 	 
+	b = Array.new 			# create new array => [] 
+	# convert string into array, split on an empty string delimiter. 
+	b = a[1].split("") 		 
+	return a[0]+' '+b[0] +'...' 	# show output------- 
+end 
+
+if ! ARGV.empty?
+	name = pick_engineer(ARGV[0])
+	
+	if name != ""
+		puts "1. %s" % [name]
+
+		puts "2. %s" % [featureA(name)]
+
+		puts "3. %s" % [featureB(name)]
+	end
 end
-
-name = pick_engineer()
-puts "1. %s" % [name]
-
-puts "2. %s" % [featureA(name)]
-
-puts "3. %s" % [featureB(name)]
